@@ -8,7 +8,33 @@ const taskForm = document.getElementById("taskForm");
 const titleInput = document.getElementById("title");
 const descriptionInput = document.getElementById("description");
 const assigneeInput = document.getElementById("assignee");
+const strRegex = /^[a-zA-z0-9]+$/;
 
+
+//functie pentru validare campului title
+titleInput.addEventListener("blur",()=>{
+  if(strRegex.test(titleInput.value.trim())){
+        console.log('Valid title');
+  }else{
+    alert('Invalid title! The title should contain only alphanumeric characters.')
+  }
+});
+//functie de validare a formularului
+function validateForm(event) {
+  let x = titleInput.value.trim();
+  let y = descriptionInput.value.trim();
+  let z = assigneeInput.value.trim();
+  if (x == "") {
+    alert("Title must be filled out");
+    event.preventDefault();
+  } else if(y == "") {
+    alert("Description must be filled out");
+    event.preventDefault();
+  } else if(z == "") {
+    alert("Email field must be filled out");
+    event.preventDefault();
+  } 
+}
 // Funcție pentru a stoca valorile în localStorage
 function storeValuesInLocalStorage() {
   const inputTitle = titleInput.value.trim();
@@ -34,7 +60,8 @@ showDialog.addEventListener("click", () => {
   createTask.showModal();
 });
 
-submitButton.addEventListener("click", () => {
+submitButton.addEventListener("click", (event) => {
+  validateForm(event);
   storeValuesInLocalStorage();
   createTask.close();
 });
