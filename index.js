@@ -70,15 +70,31 @@ function dispData(){
     output.innerHTML="";
   }
   if(JSON.parse(localStorage.getItem("formInput"))!==null){
-  JSON.parse(localStorage.getItem("formInput")).forEach(formInput =>{
+  JSON.parse(localStorage.getItem("formInput")).forEach((formInput,index) =>{
     output.innerHTML +=`
+    <div class="individual-task">
     <h2>${formInput.Title}</h2>
-    <p>${formInput.Description}</p>
-    <p>${formInput.Assignee}</p>
+    <h4>${formInput.Description}</h4>
+    <p>Assignee: ${formInput.Assignee}</p>
+    <section style="display:flex;">
+    <input type="checkbox" name="completed">
+    <p>Task is completed!</p>
+    </section>
+    <button id="deleteBtn" onclick="deleteTask(${index})">Delete Task</button>
+    </div>
+    <span class="separator"></span>
     `
   });
 }  
 }
+//Stergere task
+function deleteTask(index){
+  var formInput = JSON.parse(localStorage.getItem("formInput"))|| [];
+  formInput.splice(index,1);
+  localStorage.setItem("formInput",JSON.stringify(formInput));
+  dispData();
+}
+
 dispData();
 //se inchide dialogul
 closeButton.addEventListener('click',() => {
