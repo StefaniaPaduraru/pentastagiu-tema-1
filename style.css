@@ -12,7 +12,8 @@ body{
     background-color: #FFFAF0;
     margin:0px;
 }
-.task-panel{
+div{
+    text-align: left;
     background-color: #DCDCDC;
     margin:30px;
     display:flex;
@@ -34,11 +35,13 @@ input{
     font-size: 20px;
     margin-top: 2px;
     cursor: pointer;
+    text-align: left;
 }
 textarea{
     font-size: 20px;
     margin-top: 2px;
     cursor: pointer;
+    text-align: left;
 }
 label{
     margin-top:5px;

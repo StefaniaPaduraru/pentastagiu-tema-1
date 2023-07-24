@@ -4,12 +4,13 @@ const submitButton = document.getElementById("submitBtn");
 const outputTitle = document.getElementById("outputTitle");
 const outputDescription = document.getElementById("outputDescription");
 const outputAssignee = document.getElementById("outputAssignee");
-const taskForm = document.getElementById("taskForm");
+const taskForm = document.getElementById("task-form");
 const titleInput = document.getElementById("title");
 const descriptionInput = document.getElementById("description");
 const assigneeInput = document.getElementById("assignee");
 const strRegex = /^[a-zA-z0-9]+$/;
-
+const taskList=document.getElementById("task-div");
+const closeButton=document.getElementById("closeBtn");
 
 //functie pentru validare campului title
 titleInput.addEventListener("blur",()=>{
@@ -35,33 +36,51 @@ function validateForm(event) {
     event.preventDefault();
   } 
 }
-// Funcție pentru a stoca valorile în localStorage
-function storeValuesInLocalStorage() {
-  const inputTitle = titleInput.value.trim();
-  const inputDescription = descriptionInput.value.trim();
-  const inputAssignee = assigneeInput.value.trim();
-
-  localStorage.setItem("title", inputTitle);
-  localStorage.setItem("description", inputDescription);
-  localStorage.setItem("assignee", inputAssignee);
+//functia formularului => onsumbit in care se face stocarea datelor in localStorage
+function submitFunc(event){
+  let formInput = JSON.parse(localStorage.getItem("formInput"))|| [];
+  formInput.push({
+    Title: titleInput.value.trim(),
+    Description: descriptionInput.value.trim(),
+    Assignee: assigneeInput.value.trim()
+  })
+  const myJSON=JSON.stringify(formInput)
+  localStorage.setItem("formInput",myJSON);
+  dispData();
+  event.preventDefault();
+  taskForm.reset();
 }
-
-// Funcție pentru a afișa valorile salvate în câmpurile corespunzătoare
-function showValuesFromLocalStorage() {
-  outputTitle.value = localStorage.getItem("title") || "";
-  outputDescription.value = localStorage.getItem("description") || "";
-  outputAssignee.value = localStorage.getItem("assignee") || "";
-}
-
-// Verificare valori existente salvate în localStorage + afișare în câmpuri
-showValuesFromLocalStorage();
-
+//eveniment declansat cand intreaga structura DOM a fost construita si este pregatita sa intearctioneze cu JS
+document.addEventListener("DOMContentLoaded", function() {
+  dispData();
+});
+//se afiseaza dialogul
 showDialog.addEventListener("click", () => {
   createTask.showModal();
 });
-
+//
 submitButton.addEventListener("click", (event) => {
   validateForm(event);
-  storeValuesInLocalStorage();
+  event.preventDefault(); //opreste comportamentul implicit al formularului
+});
+//functie ce afiseaza datele stocate in local storage
+function dispData(){
+  if(localStorage.getItem("formInput")){
+    var output = taskList;
+    output.innerHTML="";
+  }
+  if(JSON.parse(localStorage.getItem("formInput"))!==null){
+  JSON.parse(localStorage.getItem("formInput")).forEach(formInput =>{
+    output.innerHTML +=`
+    <h2>${formInput.Title}</h2>
+    <p>${formInput.Description}</p>
+    <p>${formInput.Assignee}</p>
+    `
+  });
+}  
+}
+dispData();
+//se inchide dialogul
+closeButton.addEventListener('click',() => {
   createTask.close();
 });
