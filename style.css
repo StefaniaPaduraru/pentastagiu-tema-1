@@ -7,8 +7,8 @@ nav{
     background-color:#008B8B;
     color:#FFFAF0;
     padding:10px;
-    margin: 0px;
     width: 100%;
+    box-sizing: border-box;
 }
 body{
     background-color: #FFFAF0;
@@ -19,20 +19,12 @@ body{
     margin: 0px;
 }
 div{
-    background-color: #DCDCDC;
+    background-color: #dddddd;
     display:flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     margin-bottom: 10px;
-}
-#task-div{
-    text-align: left;
-    width: 50%;
-    padding: 10px 25px;
-    border-radius: 10px;
-    border: 1px solid black;
-    margin-top:30px;
 }
 form {
     font-size: 20px;
@@ -44,13 +36,11 @@ form {
 input{
     font-size: 20px;
     margin-top: 2px;
-    cursor: pointer;
     text-align: left;
 }
 textarea{
     font-size: 20px;
     margin-top: 2px;
-    cursor: pointer;
     text-align: left;
 }
 label{
@@ -66,17 +56,25 @@ button{
     border-radius: 10px;
     cursor: pointer;
   }
-  button:hover{
+button:hover{
     background-color: #008b8bc9;
     box-shadow: 1px 1px 2px 2px#00000095;
   }
+h2{
+    margin-top:0px;
+    margin-bottom: 0px;
+}
+h4{
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
 .individual-task{
-    padding: 20px;
-    border-top:none;
-    border-left:none;
-    border-right:none;
-    border-bottom: none;
-    border-radius:0px;
+    padding: 10px 25px;
+    margin-top:10px;
+    width:95%;
+    word-break: break-all;
 }
 .separator {
     display: block;
@@ -84,17 +82,36 @@ button{
     height: 1px;
     background-color: #a2a2a2;
     margin: 10px 0;
-  }
-  
-h2{
-    margin-top:0px;
-    margin-bottom: 0px;
-
 }
-h4{
+
+#task-div{
     text-align: left;
-    margin-top: 10px;
-    margin-bottom: 0px;
+    width:700px;
+    padding: 10px 25px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+#task-div2{
+    text-align: left;
+    width:700px;
+    padding: 10px 25px;
+    border-radius: 10px;
+    border: 1px solid black;
+    min-width: min-content;
+}
+#inProgress{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width:100%;
+    margin-top: 20px;
+} 
+#complete{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    width:100%;
 }
 #deleteBtn{
     margin-top:10px;
@@ -105,4 +122,17 @@ h4{
 #deleteBtn:hover{
     background-color: rgb(231, 61, 61);
     box-shadow: 1px 1px 2px 2px#00000095;
-  }
+}
+#clearAll{
+    background-color: rgb(193, 6, 6);
+    border-radius: 0px;
+    border-color: #008b8b00;
+    width: 390px;
+    margin-bottom: 30px;
+}
+#title{
+    width:96%;
+}
+#assignee{
+    width:96%;
+}

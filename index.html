@@ -18,19 +18,27 @@
         <label for="description">Description</label>
         <textarea
           id="description"
-          cols="30"
+          cols="38"
           rows="7"
           maxlength="250"
           placeholder="Enter a task description..."
         ></textarea>
         <label for="assignee">Assignee</label>
         <input type="email" id="assignee" placeholder="Enter a task assignee..."/>
-        <button id="submitBtn">Save</button>
+        <section><button id="submitBtn">Save</button>
         <button id="closeBtn">Close</button>
+        </section>
       </form>
     </dialog>
     <button id="showDialog">Create new task</button>
-    <div id="task-div">
-    </div>
+    <section id="inProgress">
+    <h1>Tasks still in progress</h1>
+    <div id="task-div"></div>
+    </section>
+    <section id="complete">
+      <h1>Completed tasks</h1>
+    <div id="task-div2"></div>
+  </section>
+  <button id="clearAll">Delete all completed tasks!</button>
   </body>
 </html>
